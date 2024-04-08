@@ -1,5 +1,7 @@
 package ds
 
+// todo: 扩容逻辑有问题
+
 type Queue[T any] struct {
 	data  []T
 	front int
