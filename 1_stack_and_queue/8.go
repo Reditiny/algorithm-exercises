@@ -15,6 +15,9 @@ import (
 */
 
 func MakeMaxTree(arr []int) *ds.BTNode {
+	if arr == nil || len(arr) == 0 {
+		return nil
+	}
 	n := len(arr)
 	nodes := make([]*ds.BTNode, n)
 	for i := 0; i < n; i++ {

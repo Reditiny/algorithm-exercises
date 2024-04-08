@@ -9,6 +9,9 @@ import ds "algorithm-exercises/0_data_structure"
 */
 
 func maxMatrix(matrix [][]int) int {
+	if matrix == nil || len(matrix) == 0 || len(matrix[0]) == 0 {
+		return 0
+	}
 
 	n := len(matrix)
 	m := len(matrix[0])

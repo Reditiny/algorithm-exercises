@@ -17,23 +17,21 @@ func maxValueInWindow(arr []int, w int) []int {
 	ans := make([]int, 0)
 	deque := ds.NewDeque[int](3)
 	for i := 0; i < w; i++ {
-		cur := arr[i]
-		for !deque.Empty() && cur > deque.Back() {
+		for !deque.Empty() && arr[i] > arr[deque.Back()] {
 			deque.PopBack()
 		}
-		deque.PushBack(cur)
+		deque.PushBack(i)
 	}
 
 	for i := w; i < n; i++ {
 		ans = append(ans, deque.Front())
-		cur := arr[i]
 		// 保持单调减
-		for !deque.Empty() && cur > deque.Back() {
+		for !deque.Empty() && arr[i] > arr[deque.Back()] {
 			deque.PopBack()
 		}
-		deque.PushBack(cur)
+		deque.PushBack(i)
 		// 窗口长度淘汰
-		if deque.Front() == arr[i-w] {
+		if deque.Front() == i-w {
 			deque.PopFront()
 		}
 	}
