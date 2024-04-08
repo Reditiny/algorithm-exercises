@@ -3,8 +3,9 @@ package main
 import ds "algorithm-exercises/0_data_structure"
 
 /*
-编写一个类， 用两个栈实现队列， 支持队列的基本操作（push、pop、peek）
+	编写一个类， 用两个栈实现队列， 支持队列的基本操作（push、pop、peek）
 */
+
 type QueueByStack struct {
 	MainStack *ds.Stack[int]
 	HelpStack *ds.Stack[int]
