@@ -1,7 +1,12 @@
 package ds
 
-type BTNode struct {
-	Val   int
-	Left  *BTNode
-	Right *BTNode
+type BTNode[T any] struct {
+	Val   T
+	Left  *BTNode[T]
+	Right *BTNode[T]
+}
+
+type LinkNode[T any] struct {
+	Val  T
+	Next *LinkNode[T]
 }

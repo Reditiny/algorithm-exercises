@@ -14,19 +14,19 @@ import (
 	要求如果数组长度为N, 则时间复杂度为 O(N)、额外空间复杂度为 O(N)。
 */
 
-func MakeMaxTree(arr []int) *ds.BTNode {
+func MakeMaxTree(arr []int) *ds.BTNode[int] {
 	if arr == nil || len(arr) == 0 {
 		return nil
 	}
 	n := len(arr)
-	nodes := make([]*ds.BTNode, n)
+	nodes := make([]*ds.BTNode[int], n)
 	for i := 0; i < n; i++ {
-		nodes[i] = &ds.BTNode{Val: arr[i]}
+		nodes[i] = &ds.BTNode[int]{Val: arr[i]}
 	}
 
 	// 单调栈确定每个值左右两边第一个比自己大的值
-	stack := ds.NewStack[*ds.BTNode](n)
-	leftFirstGreater := make(map[*ds.BTNode]*ds.BTNode)
+	stack := ds.NewStack[*ds.BTNode[int]](n)
+	leftFirstGreater := make(map[*ds.BTNode[int]]*ds.BTNode[int])
 	for i := 0; i < n; i++ {
 		for !stack.Empty() && stack.Top().Val < nodes[i].Val {
 			stack.Pop()
@@ -39,7 +39,7 @@ func MakeMaxTree(arr []int) *ds.BTNode {
 		stack.Push(nodes[i])
 	}
 	stack.Clear()
-	rightFirstGreater := make(map[*ds.BTNode]*ds.BTNode)
+	rightFirstGreater := make(map[*ds.BTNode[int]]*ds.BTNode[int])
 	for i := n - 1; i >= 0; i-- {
 		for !stack.Empty() && stack.Top().Val < nodes[i].Val {
 			stack.Pop()
@@ -54,12 +54,12 @@ func MakeMaxTree(arr []int) *ds.BTNode {
 	// 构造树
 	// 每一个数的父节点是它左边第一个比它大的数和它右边第一个比它大的数中较小的那个
 	// 如果某个数左右都没有比它大的数， 说明它是根节点
-	var root *ds.BTNode
+	var root *ds.BTNode[int]
 	for i := 0; i < n; i++ {
 		cur := nodes[i]
 		lfg := leftFirstGreater[cur]
 		rfg := rightFirstGreater[cur]
-		var parent *ds.BTNode
+		var parent *ds.BTNode[int]
 		if lfg == nil && rfg == nil {
 			root = cur
 			continue
