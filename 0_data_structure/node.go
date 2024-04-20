@@ -10,3 +10,15 @@ type LinkNode[T any] struct {
 	Val  T
 	Next *LinkNode[T]
 }
+
+type BiLinkNode[T any] struct {
+	Val  T
+	Next *BiLinkNode[T]
+	Pre  *BiLinkNode[T]
+}
+
+type LinkNodeWithRand[T any] struct {
+	Val  T
+	Next *LinkNodeWithRand[T]
+	Rand *LinkNodeWithRand[T]
+}
