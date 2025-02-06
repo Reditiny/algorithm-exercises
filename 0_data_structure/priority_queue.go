@@ -89,3 +89,9 @@ func (pq *PriorityQueue[T]) up(index int) {
 		pq.up(parent)
 	}
 }
+
+func (pq *PriorityQueue[T]) Range(f func(any T)) {
+	for i := 0; i < pq.size; i++ {
+		f(pq.data[i])
+	}
+}

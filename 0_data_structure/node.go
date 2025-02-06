@@ -22,3 +22,10 @@ type LinkNodeWithRand[T any] struct {
 	Next *LinkNodeWithRand[T]
 	Rand *LinkNodeWithRand[T]
 }
+
+type HeapNode[T any] struct {
+	Val   T
+	Par   *HeapNode[T]
+	Left  *HeapNode[T]
+	Right *HeapNode[T]
+}
